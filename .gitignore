@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Jaboedy 
-Jaboedy
-/
-GameDev
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-GameDev/.gitignore
-@Jaboedy
-Jaboedy Initial commit
-Latest commit f04b43b 2 minutes ago
- History
- 1 contributor
-60 lines (49 sloc)  1020 Bytes
-  
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
