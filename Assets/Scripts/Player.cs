@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     //config
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpHeight = 5f;
-    private int nextSpawnID = 0;
 
     //states
     bool isAlive = true;
@@ -69,13 +68,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    public int GetSpawnIDOnLoad()
-    {
-        return nextSpawnID;
-    }
-
-    public void SetSpawnIDOnLoad(int id)
-    {
-        nextSpawnID = id;
-    }
 }

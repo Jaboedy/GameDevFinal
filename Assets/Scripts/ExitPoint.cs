@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ExitPoint : MonoBehaviour
 {
+    [SerializeField] SceneController sceneController;
+    [SerializeField] int exitID;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class ExitPoint : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void SetNextSpawnID()
+    {
+        sceneController.SetSpawnID(exitID);
     }
 }
