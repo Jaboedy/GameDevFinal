@@ -68,10 +68,16 @@ public class Player : MonoBehaviour
     private void FlipSprite()
     {
         bool playerHasXSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
+        float direction = Mathf.Sign(myRigidBody.velocity.x);
+        bool isTurning = (direction != transform.localScale.x);
         if (playerHasXSpeed)
         {
-            transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x), 1f);
+            transform.localScale = new Vector2(direction, 1f);
+            if (isTurning)
+            {
+                transform.position = new Vector3(transform.position.x - (0.5f * direction), transform.position.y, transform.position.z);
+            }
         }
+        
     }
-
 }
