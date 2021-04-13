@@ -14,14 +14,16 @@ public class Player : MonoBehaviour
     //cached components
     Rigidbody2D myRigidBody;
     Animator myAnimator;
-    Collider2D myCollider;
+    CapsuleCollider2D myBodyCollider;
+    BoxCollider2D myFeetCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
-        myCollider = GetComponent<CapsuleCollider2D>();
+        myBodyCollider = GetComponent<CapsuleCollider2D>();
+        myFeetCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -42,7 +44,7 @@ public class Player : MonoBehaviour
         myRigidBody.velocity = playerVelocity;
 
         bool playerHasXSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
-        if (playerHasXSpeed && myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (playerHasXSpeed && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             myAnimator.SetBool("Running", true);
         }
@@ -54,7 +56,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
 
     private void Fall()
     {
-        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             myAnimator.SetBool("Falling", false);
             return;
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector2(direction, 1f);
             if (isTurning)
             {
-                transform.position = new Vector3(transform.position.x - (0.5f * direction), transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + (.5f * direction), transform.position.y, transform.position.z);
             }
         }
         
