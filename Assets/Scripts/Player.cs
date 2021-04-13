@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
         myAnimator.SetBool("Jumping", false);
         Run();
         Jump();
+        Fall();
         FlipSprite();
         
     }
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
         myRigidBody.velocity = playerVelocity;
 
         bool playerHasXSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
-        if (playerHasXSpeed)
+        if (playerHasXSpeed && myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             myAnimator.SetBool("Running", true);
         }
@@ -62,6 +63,22 @@ public class Player : MonoBehaviour
             Vector2 playerVelocity = new Vector2(myRigidBody.velocity.x, jumpHeight);
             myRigidBody.velocity = playerVelocity;
             myAnimator.SetBool("Jumping", true);
+        }
+    }
+
+    private void Fall()
+    {
+        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            myAnimator.SetBool("Falling", false);
+            return;
+        }
+
+        bool playerIsFalling = Mathf.Sign(myRigidBody.velocity.y) < Mathf.Epsilon;
+        Debug.Log(myRigidBody.velocity.y);
+        if (playerIsFalling)
+        {
+            myAnimator.SetBool("Falling", true);
         }
     }
 
