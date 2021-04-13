@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     //config
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpHeight = 5f;
-    private int nextSpawnID = 0;
+    [SerializeField] int health = 5;
 
     //states
     bool isAlive = true;
@@ -15,22 +15,36 @@ public class Player : MonoBehaviour
     //cached components
     Rigidbody2D myRigidBody;
     Animator myAnimator;
+    CapsuleCollider2D myBodyCollider;
+    BoxCollider2D myFeetCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+        myBodyCollider = GetComponent<CapsuleCollider2D>();
+        myFeetCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        myAnimator.SetBool("Jumping", false);
+        myAnimator.SetBool("Attacking", false);
         Run();
         Jump();
+        Fall();
+        Attack();
         FlipSprite();
         
+    }
+
+    private void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            myAnimator.SetBool("Attacking", true);
+        }
     }
 
     private void Run()
@@ -40,7 +54,7 @@ public class Player : MonoBehaviour
         myRigidBody.velocity = playerVelocity;
 
         bool playerHasXSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
-        if (playerHasXSpeed)
+        if (playerHasXSpeed && myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             myAnimator.SetBool("Running", true);
         }
@@ -52,6 +66,11 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
+        if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            myAnimator.SetBool("Jumping", false);
+            return;
+        }
         if (Input.GetKeyDown("space"))
         {
             Vector2 playerVelocity = new Vector2(myRigidBody.velocity.x, jumpHeight);
@@ -60,22 +79,35 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FlipSprite()
+    private void Fall()
     {
-        bool playerHasXSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
-        if (playerHasXSpeed)
+        if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
-            transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x), 1f);
+            myAnimator.SetBool("Falling", false);
+            return;
+        }
+
+        bool playerIsFalling = Mathf.Sign(myRigidBody.velocity.y) < Mathf.Epsilon;
+        Debug.Log(myRigidBody.velocity.y);
+        if (playerIsFalling)
+        {
+            myAnimator.SetBool("Falling", true);
         }
     }
 
-    public int GetSpawnIDOnLoad()
+    private void FlipSprite()
     {
-        return nextSpawnID;
-    }
-
-    public void SetSpawnIDOnLoad(int id)
-    {
-        nextSpawnID = id;
+        bool playerHasXSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
+        float direction = Mathf.Sign(myRigidBody.velocity.x);
+        bool isTurning = (direction != transform.localScale.x);
+        if (playerHasXSpeed)
+        {
+            transform.localScale = new Vector2(direction, 1f);
+            if (isTurning)
+            {
+                transform.position = new Vector3(transform.position.x + (.5f * direction), transform.position.y, transform.position.z);
+            }
+        }
+        
     }
 }
