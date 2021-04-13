@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     //config
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpHeight = 5f;
+    [SerializeField] int health = 5;
 
     //states
     bool isAlive = true;
@@ -29,12 +30,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myAnimator.SetBool("Jumping", false);
+        myAnimator.SetBool("Attacking", false);
         Run();
         Jump();
         Fall();
+        Attack();
         FlipSprite();
         
+    }
+
+    private void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            myAnimator.SetBool("Attacking", true);
+        }
     }
 
     private void Run()
@@ -58,6 +68,7 @@ public class Player : MonoBehaviour
     {
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
+            myAnimator.SetBool("Jumping", false);
             return;
         }
         if (Input.GetKeyDown("space"))
