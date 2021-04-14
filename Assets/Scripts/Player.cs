@@ -8,9 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpHeight = 5f;
     [SerializeField] int health = 5;
+    [SerializeField] int mana = 3;
 
     //states
-    bool isAlive = true;
+    [SerializeField] bool isAlive = true; //remove serialize field when done testing
     
     //cached components
     Rigidbody2D myRigidBody;
@@ -30,15 +31,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myAnimator.SetBool("Attacking", false);
-        Run();
-        Jump();
-        Fall();
-        Attack();
-        FlipSprite();
         
+        if (isAlive)
+        {
+            myAnimator.SetBool("Attacking", false);
+            Run();
+            Jump();
+            Fall();
+            Attack();
+            DamageTest();
+            FlipSprite();
+        }
     }
 
+    private void DamageTest()
+    {
+        if (Input.GetKeyDown("j"))
+        {
+            TakeDamage(2);
+        }
+    }
     private void Attack()
     {
         if (Input.GetMouseButtonDown(0))
@@ -109,5 +121,22 @@ public class Player : MonoBehaviour
             }
         }
         
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        //insert something to update canvas
+        if (health < 1)
+        {
+            isAlive = false;
+            myAnimator.SetBool("Attacking", false);
+            myAnimator.SetBool("Dying", true);
+        }
+    }
+
+    public void UnsetDying()
+    {
+        myAnimator.SetBool("Dying", false);
     }
 }
