@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
 
     [SerializeField] SpawnPoint[] spawnPoints;
     [SerializeField] ExitPoint[] exitPoints;
-    [SerializeField] Player player;
+
+    Player player;
 
     int spawnID = 0;
+    int nextScene = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<Player>();
+        spawnID = player.GetSpawnID();
         var spawns = MapSpawns();
         SpawnPlayer(spawns);
     }
@@ -22,11 +27,6 @@ public class SceneController : MonoBehaviour
     void Update()
     {
 
-    }
-
-    void SetExitID(int id)
-    {
-        spawnID = id;
     }
 
     private Dictionary<int, SpawnPoint> MapSpawns()
@@ -46,6 +46,11 @@ public class SceneController : MonoBehaviour
 
     public void SetSpawnID(int newID)
     {
-        spawnID = newID;
+        player.SetSpawnID(newID);
+    }
+
+    public void LoadNextScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
 }
