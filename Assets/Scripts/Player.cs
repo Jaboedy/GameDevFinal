@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpHeight = 5f;
     [SerializeField] int health = 5;
     [SerializeField] int mana = 3;
+    [SerializeField] UIController uiController;
 
     //states
     [SerializeField] bool isAlive = true; //remove serialize field when done testing
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     Animator myAnimator;
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
+
 
 
     private void Awake()
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
+        Debug.Log("Calls Start");
     }
 
     // Update is called once per frame
@@ -116,7 +119,6 @@ public class Player : MonoBehaviour
         }
 
         bool playerIsFalling = Mathf.Sign(myRigidBody.velocity.y) < Mathf.Epsilon;
-        Debug.Log(myRigidBody.velocity.y);
         if (playerIsFalling)
         {
             myAnimator.SetBool("Falling", true);
@@ -142,6 +144,12 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        if (health < 0)
+        {
+            health = 0;
+        }
+
+        uiController.SetHP(health);
         //insert something to update canvas
         if (health < 1)
         {
@@ -193,6 +201,15 @@ public class Player : MonoBehaviour
         myRigidBody.velocity = new Vector2(0f, 0f);
     }
 
+    public int GetHP()
+    {
+        return health;
+    }
+
+    public int GetMana()
+    {
+        return mana;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

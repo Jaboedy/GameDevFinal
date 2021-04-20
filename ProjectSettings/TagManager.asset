@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sword Attack
   - Camera
+  - Enemy
   layers:
   - Default
   - TransparentFX
