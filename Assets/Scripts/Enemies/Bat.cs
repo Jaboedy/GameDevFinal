@@ -51,6 +51,14 @@ public class Bat : MonoBehaviour
             myCollider.enabled = false;
             myRigidbody.velocity = new Vector2(0f, 0f);
             isAlive = false;
+            player.AddMana();
+        }
+        if (collision.CompareTag("Eldritch Blast"))
+        {
+            myAnimator.SetBool("Dying", true);
+            myCollider.enabled = false;
+            myRigidbody.velocity = new Vector2(0f, 0f);
+            isAlive = false;
         }
     }
 

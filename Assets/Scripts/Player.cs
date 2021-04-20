@@ -10,9 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] int health = 5;
     [SerializeField] int mana = 3;
     [SerializeField] UIController uiController;
+    [SerializeField] EldritchBlast eldritchBlastPrefab;
 
     //states
-    [SerializeField] bool isAlive = true; //remove serialize field when done testing
+    bool isAlive = true; //remove serialize field when done testing
     bool knockback = false;
     int spawnID = 0;
     
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
 
-
+    [SerializeField] EldritchBlast eldritchBlast;
 
     private void Awake()
     {
@@ -58,24 +59,48 @@ public class Player : MonoBehaviour
             Jump();
             Fall();
             Attack();
-            DamageTest();
+            Cast();
             FlipSprite();
         }
     }
 
-    private void DamageTest()
-    {
-        if (Input.GetKeyDown("j"))
-        {
-            TakeDamage(2);
-        }
-    }
     private void Attack()
     {
         if (Input.GetMouseButtonDown(0))
         {
             myAnimator.SetBool("Attacking", true);
         }
+    }
+
+    private void Cast()
+    {
+        if ((Input.GetMouseButtonDown(1)) && (!myAnimator.GetBool("Attacking")) && (mana>0) && (!eldritchBlast))
+        {
+            knockback = true;
+            myRigidBody.velocity = new Vector2(0f, 0f);
+            myAnimator.SetBool("Casting", true);
+            myRigidBody.gravityScale = 0;
+            mana--;
+            uiController.SetMana(mana);
+            
+        }
+        else if ((Input.GetMouseButtonDown(1)) && (eldritchBlast))
+        {
+            eldritchBlast.Explode();
+        }
+    }
+
+    private void SpawnEldritchBlast()
+    {
+        Vector3 eldritchSpawnPos = new Vector3(transform.position.x + (.7f * transform.localScale.x), transform.position.y + 0.6f, transform.position.z);
+        eldritchBlast = Instantiate(eldritchBlastPrefab, eldritchSpawnPos, transform.rotation);
+    }
+
+    private void FinishCast()
+    {
+        myAnimator.SetBool("Casting", false);
+        knockback = false;
+        myRigidBody.gravityScale = 1;
     }
 
     private void Run()
@@ -209,6 +234,15 @@ public class Player : MonoBehaviour
     public int GetMana()
     {
         return mana;
+    }
+
+    public void AddMana()
+    {
+        if (mana < 3)
+        {
+            mana += 1;
+            uiController.SetMana(mana);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

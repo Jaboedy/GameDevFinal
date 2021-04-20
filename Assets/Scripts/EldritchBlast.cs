@@ -10,11 +10,13 @@ public class EldritchBlast : MonoBehaviour
 
 
     Rigidbody2D myRigidBody;
+    Animator myAnimator;
 
     Player player;
     // Start is called before the first frame update
     void Start()
     {
+        myAnimator = GetComponent<Animator>();
         player = FindObjectOfType<Player>();
         myRigidBody = gameObject.GetComponent<Rigidbody2D>();
         myRigidBody.velocity = new Vector2(10f * player.transform.localScale.x, 0f);
@@ -53,6 +55,18 @@ public class EldritchBlast : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+
+    public void Explode()
+    {
+        myRigidBody.velocity = Vector2.zero;
+        myAnimator.SetBool("Explode", true);
+    }
+    public void FinishExplosion()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
 

@@ -42,7 +42,7 @@ public class UIController : MonoBehaviour
         
     }
 
-    public void SetUIHealth()
+    private void SetUIHealth()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -58,7 +58,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void SetUIMana()
+    private void SetUIMana()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -77,5 +77,11 @@ public class UIController : MonoBehaviour
     {
         currentHP = playerHP;
         SetUIHealth();
+    }
+
+    public void SetMana(int playerMana)
+    {
+        currentMana = playerMana;
+        SetUIMana();
     }
 }
