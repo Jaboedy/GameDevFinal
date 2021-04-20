@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     //states
     [SerializeField] bool isAlive = true; //remove serialize field when done testing
+    bool knockback = false;
     int spawnID = 0;
     
     //cached components
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-        if (isAlive)
+        if (isAlive && !knockback)
         {
             myAnimator.SetBool("Attacking", false);
             Run();
@@ -148,6 +149,10 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("Attacking", false);
             myAnimator.SetBool("Dying", true);
         }
+        else
+        {
+            myAnimator.SetBool("Damaged", true);
+        }
     }
 
     public void SetSpawnID(int id)
@@ -163,5 +168,40 @@ public class Player : MonoBehaviour
     public void UnsetDying()
     {
         myAnimator.SetBool("Dying", false);
+        
+    }
+
+    public void SetKnockback()
+    {
+        knockback = true;
+    }
+
+    public void UnsetKnockback()
+    {
+        knockback = false;
+        myAnimator.SetBool("Damaged", false);
+    }
+
+    public bool GetAlive()
+    {
+        return isAlive;
+    }
+
+    public void StopPlayer()
+    {
+        Debug.Log("This gets called");
+        myRigidBody.velocity = new Vector2(0f, 0f);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !knockback)
+        {
+            knockback = true;
+            float direction = Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x);
+            myRigidBody.velocity = new Vector2(10f * direction, 3f);
+            myAnimator.SetBool("Damaged", true);
+        }
     }
 }
