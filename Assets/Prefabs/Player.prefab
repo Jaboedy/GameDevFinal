@@ -217,6 +217,7 @@ MonoBehaviour:
   jumpHeight: 15
   health: 5
   mana: 3
+  uiController: {fileID: 0}
   isAlive: 1
 --- !u!61 &4876543854269981195
 BoxCollider2D:
