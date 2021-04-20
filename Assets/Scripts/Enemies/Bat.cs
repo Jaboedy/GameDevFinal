@@ -30,6 +30,7 @@ public class Bat : MonoBehaviour
         if (isAlive)
         {
             Fly();
+            FlipSprite();
         }
     }
 
@@ -86,6 +87,16 @@ public class Bat : MonoBehaviour
         }
         
         
+    }
+
+    private void FlipSprite()
+    {
+        float xDirection = Mathf.Sign(myRigidbody.velocity.x);
+        bool isTurning = (xDirection == transform.localScale.x);
+        if (isTurning)
+        {
+            transform.localScale = new Vector2(-xDirection, 1f);
+        }
     }
 
     public void DestroyAfterAnimation()
