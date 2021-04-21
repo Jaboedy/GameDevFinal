@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sword Attack
+  - Camera
+  - Enemy
   layers:
   - Default
   - TransparentFX
