@@ -8,9 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpHeight = 5f;
     [SerializeField] int health = 5;
+    [SerializeField] int mana = 3;
+    [SerializeField] UIController uiController;
+    [SerializeField] EldritchBlast eldritchBlastPrefab;
 
     //states
-    bool isAlive = true;
+    bool isAlive = true; //remove serialize field when done testing
+    bool knockback = false;
+    int spawnID = 0;
     
     //cached components
     Rigidbody2D myRigidBody;
@@ -18,6 +23,21 @@ public class Player : MonoBehaviour
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
 
+    [SerializeField] EldritchBlast eldritchBlast;
+
+    private void Awake()
+    {
+        int playerCount = FindObjectsOfType<Player>().Length;
+        if(playerCount > 1)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -25,18 +45,23 @@ public class Player : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
+        Debug.Log("Calls Start");
     }
 
     // Update is called once per frame
     void Update()
     {
-        myAnimator.SetBool("Attacking", false);
-        Run();
-        Jump();
-        Fall();
-        Attack();
-        FlipSprite();
         
+        if (isAlive && !knockback)
+        {
+            myAnimator.SetBool("Attacking", false);
+            Run();
+            Jump();
+            Fall();
+            Attack();
+            Cast();
+            FlipSprite();
+        }
     }
 
     private void Attack()
@@ -45,6 +70,37 @@ public class Player : MonoBehaviour
         {
             myAnimator.SetBool("Attacking", true);
         }
+    }
+
+    private void Cast()
+    {
+        if ((Input.GetMouseButtonDown(1)) && (!myAnimator.GetBool("Attacking")) && (mana>0) && (!eldritchBlast))
+        {
+            knockback = true;
+            myRigidBody.velocity = new Vector2(0f, 0f);
+            myAnimator.SetBool("Casting", true);
+            myRigidBody.gravityScale = 0;
+            mana--;
+            uiController.SetMana(mana);
+            
+        }
+        else if ((Input.GetMouseButtonDown(1)) && (eldritchBlast))
+        {
+            eldritchBlast.Explode();
+        }
+    }
+
+    private void SpawnEldritchBlast()
+    {
+        Vector3 eldritchSpawnPos = new Vector3(transform.position.x + (.7f * transform.localScale.x), transform.position.y + 0.6f, transform.position.z);
+        eldritchBlast = Instantiate(eldritchBlastPrefab, eldritchSpawnPos, transform.rotation);
+    }
+
+    private void FinishCast()
+    {
+        myAnimator.SetBool("Casting", false);
+        knockback = false;
+        myRigidBody.gravityScale = 1;
     }
 
     private void Run()
@@ -88,7 +144,6 @@ public class Player : MonoBehaviour
         }
 
         bool playerIsFalling = Mathf.Sign(myRigidBody.velocity.y) < Mathf.Epsilon;
-        Debug.Log(myRigidBody.velocity.y);
         if (playerIsFalling)
         {
             myAnimator.SetBool("Falling", true);
@@ -109,5 +164,95 @@ public class Player : MonoBehaviour
             }
         }
         
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health < 0)
+        {
+            health = 0;
+        }
+
+        uiController.SetHP(health);
+        //insert something to update canvas
+        if (health < 1)
+        {
+            isAlive = false;
+            myAnimator.SetBool("Attacking", false);
+            myAnimator.SetBool("Dying", true);
+        }
+        else
+        {
+            myAnimator.SetBool("Damaged", true);
+        }
+    }
+
+    public void SetSpawnID(int id)
+    {
+        spawnID = id;
+    }
+
+    public int GetSpawnID()
+    {
+        return spawnID;
+    }
+
+    public void UnsetDying()
+    {
+        myAnimator.SetBool("Dying", false);
+        
+    }
+
+    public void SetKnockback()
+    {
+        knockback = true;
+    }
+
+    public void UnsetKnockback()
+    {
+        knockback = false;
+        myAnimator.SetBool("Damaged", false);
+    }
+
+    public bool GetAlive()
+    {
+        return isAlive;
+    }
+
+    public void StopPlayer()
+    {
+        Debug.Log("This gets called");
+        myRigidBody.velocity = new Vector2(0f, 0f);
+    }
+
+    public int GetHP()
+    {
+        return health;
+    }
+
+    public int GetMana()
+    {
+        return mana;
+    }
+
+    public void AddMana()
+    {
+        if (mana < 3)
+        {
+            mana += 1;
+            uiController.SetMana(mana);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !knockback)
+        {
+            knockback = true;
+            float direction = Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x);
+            myRigidBody.velocity = new Vector2(10f * direction, 3f);
+            myAnimator.SetBool("Damaged", true);
+        }
     }
 }
