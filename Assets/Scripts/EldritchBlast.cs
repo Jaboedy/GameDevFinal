@@ -11,12 +11,14 @@ public class EldritchBlast : MonoBehaviour
 
     Rigidbody2D myRigidBody;
     Animator myAnimator;
+    CircleCollider2D myCollider;
 
     Player player;
     // Start is called before the first frame update
     void Start()
     {
         myAnimator = GetComponent<Animator>();
+        myCollider = GetComponent<CircleCollider2D>();
         player = FindObjectOfType<Player>();
         myRigidBody = gameObject.GetComponent<Rigidbody2D>();
         myRigidBody.velocity = new Vector2(10f * player.transform.localScale.x, 0f);
@@ -37,6 +39,7 @@ public class EldritchBlast : MonoBehaviour
             hasCollided = true;
             collidedWith = collision.gameObject;
             collisionVector = collision.gameObject.transform.position - gameObject.transform.position;
+            myCollider.enabled = false;
         }
         
     }
@@ -45,6 +48,7 @@ public class EldritchBlast : MonoBehaviour
     {
         if (hasCollided && collidedWith != null)
         {
+            
             gameObject.transform.position = new Vector2(collidedWith.transform.position.x - collisionVector.x, collidedWith.transform.position.y - collisionVector.y);
         }
     }
@@ -60,6 +64,7 @@ public class EldritchBlast : MonoBehaviour
 
     public void Explode()
     {
+        myCollider.enabled = true;
         myRigidBody.velocity = Vector2.zero;
         myAnimator.SetBool("Explode", true);
     }

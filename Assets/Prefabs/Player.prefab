@@ -218,7 +218,8 @@ MonoBehaviour:
   health: 5
   mana: 3
   uiController: {fileID: 0}
-  isAlive: 1
+  eldritchBlastPrefab: {fileID: 5818389383454848320, guid: a5e4251ab16812b428116d01da3418e4, type: 3}
+  eldritchBlast: {fileID: 0}
 --- !u!61 &4876543854269981195
 BoxCollider2D:
   m_ObjectHideFlags: 0
