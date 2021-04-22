@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     bool isAlive = true; //remove serialize field when done testing
     bool knockback = false;
     int spawnID = 0;
+    bool paused = false;
     
     //cached components
     Rigidbody2D myRigidBody;
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-        if (isAlive && !knockback)
+        if ((isAlive) && (!knockback) && (!paused))
         {
             myAnimator.SetBool("Attacking", false);
             Run();
@@ -254,5 +255,16 @@ public class Player : MonoBehaviour
             myRigidBody.velocity = new Vector2(10f * direction, 3f);
             myAnimator.SetBool("Damaged", true);
         }
+    }
+
+    public void SetPaused(bool pausedBool)
+    {
+        paused = pausedBool;
+    }
+
+    public void DestroyPlayer()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
