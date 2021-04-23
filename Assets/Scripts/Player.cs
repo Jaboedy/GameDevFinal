@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpHeight = 5f;
     [SerializeField] int health = 5;
     [SerializeField] int mana = 3;
+    [SerializeField] float boostSpeed = 10f;
     [SerializeField] UIController uiController;
     [SerializeField] EldritchBlast eldritchBlastPrefab;
 
@@ -257,6 +258,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Eldritch Blast"))
+        {
+            StartCoroutine("Boost", collision);
+        }
+    }
+
+    IEnumerator Boost(Collider2D collision)
+    {
+        knockback = true;
+
+        Vector2 direction = new Vector2(transform.position.x - collision.transform.position.x, transform.position.y - collision.transform.position.y);
+        myRigidBody.velocity = direction.normalized * boostSpeed;
+        while(myRigidBody.velocity.y > -2f)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        knockback = false;
+        
+    }
     public void SetPaused(bool pausedBool)
     {
         paused = pausedBool;
