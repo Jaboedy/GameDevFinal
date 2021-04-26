@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject[] health;
     [SerializeField] GameObject[] mana;
+    [SerializeField] GameObject pauseMenu;
     // Start is called before the first frame update
 
     Player player;
@@ -39,7 +41,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        PauseGame();
     }
 
     private void SetUIHealth()
@@ -83,5 +85,32 @@ public class UIController : MonoBehaviour
     {
         currentMana = playerMana;
         SetUIMana();
+    }
+
+    public void PauseGame()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+            player.SetPaused(true);
+        }
+    }
+
+    public void UnPause()
+    {
+        pauseMenu.SetActive(false);
+        player.SetPaused(false);
+        Time.timeScale = 1f;
+    }
+
+    public void BackToMainMenu()
+    {
+        UnPause();
+        player.enabled = false;
+        gameObject.SetActive(false);
+        player.DestroyPlayer();
+        Destroy(gameObject);
+        SceneManager.LoadScene(0);
     }
 }

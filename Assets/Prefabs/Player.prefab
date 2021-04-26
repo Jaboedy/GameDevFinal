@@ -217,6 +217,7 @@ MonoBehaviour:
   jumpHeight: 15
   health: 5
   mana: 3
+  boostSpeed: 20
   uiController: {fileID: 0}
   eldritchBlastPrefab: {fileID: 5818389383454848320, guid: a5e4251ab16812b428116d01da3418e4, type: 3}
   eldritchBlast: {fileID: 0}
