@@ -26,7 +26,7 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private Dictionary<int, SpawnPoint> MapSpawns()
@@ -53,4 +53,6 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
+
+    
 }
