@@ -9,16 +9,20 @@ public class Zombie : MonoBehaviour
     [SerializeField] int health = 2;
 
     Rigidbody2D zombieRigidbody;
-    Collider2D zombieCollider;
+    CapsuleCollider2D zombieCollider;
+    Animator zombieAnimator;
     Player player;
 
     bool hasCollided = false;
+    bool isAlive = true;
+    bool knockback = false;
 
     // Start is called before the first frame update
     void Start()
     {
         zombieRigidbody = GetComponent<Rigidbody2D>();
-        zombieCollider = GetComponent<Collider2D>();
+        zombieCollider = GetComponent<CapsuleCollider2D>();
+        zombieAnimator = GetComponent<Animator>();
         player = FindObjectOfType<Player>();
     }
 
@@ -26,7 +30,11 @@ public class Zombie : MonoBehaviour
     void Update()
     {
         hasCollided = false;
-        Walk();
+        if (isAlive && !knockback){
+            
+            Walk();
+        }
+        
     }
 
     private void Walk()
@@ -35,17 +43,77 @@ public class Zombie : MonoBehaviour
         zombieRigidbody.velocity = new Vector2(moveSpeed*direction, zombieRigidbody.velocity.y);
     }
 
+    private void TakeDamage(int damageTaken, Collider2D collision)
+    {
+        if (knockback)
+        {
+            return;
+        }
+        Debug.Log("Zombie took damage");
+        health -= damageTaken;
+        knockback = true;
+        if (health > 0)
+        {
+            float direction = Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x);
+            zombieAnimator.SetBool("Damaged", true);
+            zombieRigidbody.velocity = new Vector2(5f * direction, 3f);
+        }
+        else
+        {
+            isAlive = false;
+            zombieRigidbody.velocity = new Vector2(0f, 0f);
+            zombieAnimator.SetBool("Dying", true);
+            zombieCollider.enabled = false;
+            zombieRigidbody.bodyType = RigidbodyType2D.Static;
+        }
+    }
+
+    public void UnsetDamaged()
+    {
+        zombieAnimator.SetBool("Damaged", false);
+    }
+
+    public void UnsetDying()
+    {
+        zombieAnimator.SetBool("Dying", false);
+    }
+    
+    public void UnsetKnockback()
+    {
+        knockback = false;
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        transform.localScale = new Vector2(-transform.localScale.x, 1f);
+        if((!collision.CompareTag("Sword Attack")) && (!collision.CompareTag("Eldritch Blast")))
+        {
+            transform.localScale = new Vector2(-transform.localScale.x, 1f);
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !hasCollided && player.GetAlive())
+        if (collision.gameObject.CompareTag("Player") && !hasCollided && player.GetAlive() && isAlive)
         {
             player.TakeDamage(1);
             hasCollided = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Trigger Enter");
+        Debug.Log(collision.tag);
+        if (collision.CompareTag("Sword Attack") && !hasCollided)
+        {
+            hasCollided = true;
+            Debug.Log("Sword Attack");
+            TakeDamage(1, collision);
+        }
+        if (collision.CompareTag("Eldritch Blast") && !hasCollided)
+        {
+            hasCollided = true;
+            TakeDamage(2, collision);
         }
     }
 }
