@@ -2,45 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+public class Lizard : MonoBehaviour
 {
-
-    [SerializeField] float moveSpeed = 3f;
-    [SerializeField] int health = 2;
-
-    Rigidbody2D zombieRigidbody;
-    CapsuleCollider2D zombieCollider;
-    Animator zombieAnimator;
-    Player player;
-
-    bool hasCollided = false;
+    [SerializeField] float walkSpeed = -2f;
+    [SerializeField] int health = 3;
+    
+    Animator lizardAnimator;
+    Rigidbody2D lizardRigidBody;
+    CapsuleCollider2D lizardBodyCollider;
+    
+    bool isAttacking = false;
     bool isAlive = true;
     bool knockback = false;
+    bool hasCollided = false;
 
+    
+
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
-        zombieRigidbody = GetComponent<Rigidbody2D>();
-        zombieCollider = GetComponent<CapsuleCollider2D>();
-        zombieAnimator = GetComponent<Animator>();
         player = FindObjectOfType<Player>();
+        lizardAnimator = GetComponent<Animator>();
+        lizardRigidBody = GetComponent<Rigidbody2D>();
+        lizardBodyCollider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        hasCollided = false;
-        if (isAlive && !knockback){
-            
+        if ((!isAttacking) && (!knockback) && (isAlive))
+        {
             Walk();
         }
+        if (isAlive)
+        {
+            lizardAnimator.SetBool("Attacking", isAttacking);
+            hasCollided = false;
+        }
         
+    }
+
+    public void Attack()
+    {
+        if (isAlive)
+        {
+            isAttacking = true;
+            lizardRigidBody.velocity = new Vector2(0f, 0f);
+            lizardAnimator.SetBool("Attacking", true);
+        }
     }
 
     private void Walk()
     {
         float direction = Mathf.Sign(transform.localScale.x);
-        zombieRigidbody.velocity = new Vector2(moveSpeed*direction, zombieRigidbody.velocity.y);
+        lizardRigidBody.velocity = new Vector2(walkSpeed * direction, lizardRigidBody.velocity.y);
+    }
+
+    public void DoneAttacking()
+    {
+        isAttacking = false;
     }
 
     private void TakeDamage(int damageTaken, Collider2D collision)
@@ -54,34 +75,32 @@ public class Zombie : MonoBehaviour
         if (health > 0)
         {
             float direction = Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x);
-            zombieAnimator.SetBool("Damaged", true);
-            zombieRigidbody.velocity = new Vector2(5f * direction, 3f);
+            lizardAnimator.SetBool("Damaged", true);
+            lizardRigidBody.velocity = new Vector2(5f * direction, 3f);
         }
         else
         {
             isAlive = false;
-            zombieRigidbody.velocity = new Vector2(0f, 0f);
-            zombieAnimator.SetBool("Dying", true);
-            zombieCollider.enabled = false;
-            zombieRigidbody.bodyType = RigidbodyType2D.Static;
+            lizardAnimator.SetBool("Dying", true);
+            lizardBodyCollider.enabled = false;
+            lizardRigidBody.bodyType = RigidbodyType2D.Static;
         }
     }
 
     public void UnsetDamaged()
     {
-        zombieAnimator.SetBool("Damaged", false);
+        lizardAnimator.SetBool("Damaged", false);
     }
 
     public void UnsetDying()
     {
-        zombieAnimator.SetBool("Dying", false);
+        lizardAnimator.SetBool("Dying", false);
     }
-    
+
     public void UnsetKnockback()
     {
         knockback = false;
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -96,13 +115,12 @@ public class Zombie : MonoBehaviour
     {
         if (collision.CompareTag("Sword Attack") && !hasCollided)
         {
-            hasCollided = true;
             if (health == 1)
             {
                 player.AddMana();
             }
+            hasCollided = true;
             TakeDamage(1, collision);
-            
         }
         if (collision.CompareTag("Eldritch Blast") && !hasCollided && collision.isTrigger)
         {
@@ -110,4 +128,6 @@ public class Zombie : MonoBehaviour
             TakeDamage(2, collision);
         }
     }
+
+
 }
