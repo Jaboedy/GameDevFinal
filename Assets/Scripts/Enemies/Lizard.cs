@@ -115,6 +115,10 @@ public class Lizard : MonoBehaviour
     {
         if (collision.CompareTag("Sword Attack") && !hasCollided)
         {
+            if (health == 1)
+            {
+                player.AddMana();
+            }
             hasCollided = true;
             TakeDamage(1, collision);
         }

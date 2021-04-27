@@ -97,7 +97,12 @@ public class Zombie : MonoBehaviour
         if (collision.CompareTag("Sword Attack") && !hasCollided)
         {
             hasCollided = true;
+            if (health == 1)
+            {
+                player.AddMana();
+            }
             TakeDamage(1, collision);
+            
         }
         if (collision.CompareTag("Eldritch Blast") && !hasCollided && collision.isTrigger)
         {
