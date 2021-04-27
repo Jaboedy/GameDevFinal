@@ -84,7 +84,7 @@ public class Zombie : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if((!collision.CompareTag("Sword Attack")) && (!collision.CompareTag("Eldritch Blast")))
+        if((!collision.CompareTag("Sword Attack")) && (!collision.CompareTag("Eldritch Blast")) && (!collision.CompareTag("Player")))
         {
             transform.localScale = new Vector2(-transform.localScale.x, 1f);
         }
@@ -110,7 +110,7 @@ public class Zombie : MonoBehaviour
             Debug.Log("Sword Attack");
             TakeDamage(1, collision);
         }
-        if (collision.CompareTag("Eldritch Blast") && !hasCollided)
+        if (collision.CompareTag("Eldritch Blast") && !hasCollided && collision.isTrigger)
         {
             hasCollided = true;
             TakeDamage(2, collision);
