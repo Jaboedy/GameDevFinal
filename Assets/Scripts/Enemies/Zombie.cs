@@ -49,7 +49,6 @@ public class Zombie : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Zombie took damage");
         health -= damageTaken;
         knockback = true;
         if (health > 0)
@@ -102,12 +101,9 @@ public class Zombie : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger Enter");
-        Debug.Log(collision.tag);
         if (collision.CompareTag("Sword Attack") && !hasCollided)
         {
             hasCollided = true;
-            Debug.Log("Sword Attack");
             TakeDamage(1, collision);
         }
         if (collision.CompareTag("Eldritch Blast") && !hasCollided && collision.isTrigger)

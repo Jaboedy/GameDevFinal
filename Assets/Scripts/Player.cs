@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
-        Debug.Log("Calls Start");
     }
 
     // Update is called once per frame
@@ -224,7 +223,6 @@ public class Player : MonoBehaviour
 
     public void StopPlayer()
     {
-        Debug.Log("This gets called");
         myRigidBody.velocity = new Vector2(0f, 0f);
     }
 
