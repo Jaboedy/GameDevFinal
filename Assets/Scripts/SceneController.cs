@@ -12,7 +12,6 @@ public class SceneController : MonoBehaviour
     Player player;
 
     int spawnID = 0;
-    int nextScene = 0;
 
     // Start is called before the first frame update
     void Start()
