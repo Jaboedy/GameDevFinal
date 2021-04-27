@@ -83,7 +83,7 @@ public class Zombie : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if((!collision.CompareTag("Sword Attack")) && (!collision.CompareTag("Eldritch Blast")) && (!collision.CompareTag("Player")))
+        if((!collision.CompareTag("Sword Attack")) && (!collision.CompareTag("Eldritch Blast")) && (!collision.CompareTag("Player")) && (isAlive) && (!knockback))
         {
             transform.localScale = new Vector2(-transform.localScale.x, 1f);
         }
