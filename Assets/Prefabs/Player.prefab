@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4876543852588999456}
   - component: {fileID: 4876543852588999459}
   - component: {fileID: 223339814}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Sword Attack
   m_TagString: Sword Attack
   m_Icon: {fileID: 0}
