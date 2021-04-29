@@ -35,6 +35,7 @@ public class EldritchBlast : MonoBehaviour
     {
         if (!hasCollided)
         {
+            Debug.Log(collision.gameObject.name);
             myRigidBody.velocity = new Vector2(0f, 0f);
             hasCollided = true;
             collidedWith = collision.gameObject;
