@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
 
     Player player;
+    AudioPlayer audioPlayer;
     int currentHP;
     int currentMana;
 
@@ -31,6 +32,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         currentHP = player.GetHP();
         currentMana = player.GetMana();
 
@@ -109,6 +111,8 @@ public class UIController : MonoBehaviour
         UnPause();
         player.enabled = false;
         gameObject.SetActive(false);
+        audioPlayer.enabled = false;
+        audioPlayer.DestroyAudioPlayer();
         player.DestroyPlayer();
         Destroy(gameObject);
         SceneManager.LoadScene(0);
