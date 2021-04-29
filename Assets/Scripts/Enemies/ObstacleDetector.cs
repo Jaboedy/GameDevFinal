@@ -25,4 +25,12 @@ public class ObstacleDetector : MonoBehaviour
             parent.transform.localScale = new Vector2(-parent.transform.localScale.x, 1f);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((collision.CompareTag("Enemy")))
+        {
+            parent.transform.localScale = new Vector2(-parent.transform.localScale.x, 1f);
+        }
+    }
 }
