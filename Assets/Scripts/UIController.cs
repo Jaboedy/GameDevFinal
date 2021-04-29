@@ -117,4 +117,10 @@ public class UIController : MonoBehaviour
         Destroy(gameObject);
         SceneManager.LoadScene(0);
     }
+
+    public void DestroyUIController()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
 }
