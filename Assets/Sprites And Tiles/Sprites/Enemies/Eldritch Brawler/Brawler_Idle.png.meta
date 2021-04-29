@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: 29e2cb59178c6134fa57b9960f370369
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1149910649257116132
+    second: Boss_Monster_Idle_0
+  - first:
+      213: -3681103819900886175
+    second: Boss_Monster_Idle_1
+  - first:
+      213: -1632387276865580135
+    second: Boss_Monster_Idle_2
+  - first:
+      213: 825870117382400069
+    second: Boss_Monster_Idle_3
+  - first:
+      213: -6235002193126081995
+    second: Boss_Monster_Idle_4
+  - first:
+      213: 4225339689124966868
+    second: Boss_Monster_Idle_5
+  - first:
+      213: -5371428244643766756
+    second: Boss_Monster_Idle_6
+  - first:
+      213: 6097643575049075326
+    second: Boss_Monster_Idle_7
+  - first:
+      213: -3033764206363961412
+    second: Boss_Monster_Idle_8
+  - first:
+      213: 8976377916817974471
+    second: Boss_Monster_Idle_9
+  - first:
+      213: -8132464125379454456
+    second: Boss_Monster_Idle_10
+  - first:
+      213: -5111658869426364093
+    second: Boss_Monster_Idle_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 3
+        width: 60
+        height: 98
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1c86c94ad45ff00800000000000000
+      internalID: 1149910649257116132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 3
+        width: 60
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163697144971aecc0800000000000000
+      internalID: -3681103819900886175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 3
+        width: 60
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9935f82ab689859e0800000000000000
+      internalID: -1632387276865580135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 3
+        width: 61
+        height: 101
+      alignment: 9
+      pivot: {x: 0.493, y: 0.485}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54820310f74167b00800000000000000
+      internalID: 825870117382400069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 3
+        width: 61
+        height: 102
+      alignment: 9
+      pivot: {x: 0.492, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a30f03a82d879a0800000000000000
+      internalID: -6235002193126081995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 3
+        width: 61
+        height: 102
+      alignment: 9
+      pivot: {x: 0.573, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d137a97f0c63aa30800000000000000
+      internalID: 4225339689124966868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 3
+        width: 60
+        height: 101
+      alignment: 9
+      pivot: {x: 0.5, y: 0.485}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e1285787ad475b0800000000000000
+      internalID: -5371428244643766756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 3
+        width: 60
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7a3eb9568e2f9450800000000000000
+      internalID: 6097643575049075326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 3
+        width: 60
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb791632787e5e5d0800000000000000
+      internalID: -3033764206363961412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 3
+        width: 61
+        height: 96
+      alignment: 9
+      pivot: {x: 0.492, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c4a89d0820829c70800000000000000
+      internalID: 8976377916817974471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_10
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 3
+        width: 61
+        height: 97
+      alignment: 9
+      pivot: {x: 0.492, y: 0.505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a562237fea32f80800000000000000
+      internalID: -8132464125379454456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Monster_Idle_11
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 3
+        width: 61
+        height: 98
+      alignment: 9
+      pivot: {x: 0.492, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 341edda475dbf09b0800000000000000
+      internalID: -5111658869426364093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

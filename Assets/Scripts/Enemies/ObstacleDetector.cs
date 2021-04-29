@@ -20,8 +20,18 @@ public class ObstacleDetector : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if ((!collision.CompareTag("Sword Attack")) && (!collision.CompareTag("Eldritch Blast")) && (!collision.CompareTag("Player")))
+        if ((!collision.CompareTag("Sword Attack")) && (!collision.CompareTag("Eldritch Blast")) && (!collision.CompareTag("Player")) && (!collision.CompareTag("Enemy")))
         {
+            parent.transform.localScale = new Vector2(-parent.transform.localScale.x, 1f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if ((collision.CompareTag("Enemy")))
+        {
+            Debug.Log(collision.name);
             parent.transform.localScale = new Vector2(-parent.transform.localScale.x, 1f);
         }
     }

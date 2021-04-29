@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4876543852588999456}
   - component: {fileID: 4876543852588999459}
-  m_Layer: 0
+  - component: {fileID: 223339814}
+  m_Layer: 13
   m_Name: Sword Attack
   m_TagString: Sword Attack
   m_Icon: {fileID: 0}
@@ -57,6 +58,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.47291684, y: 0.67113256}
   m_EdgeRadius: 0
+--- !u!114 &223339814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876543852588999457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1391830bc0b01584cbaa8773475d0e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordSounds:
+  - {fileID: 8300000, guid: 13182107f288fdc47a11f9216c8f062b, type: 3}
+  - {fileID: 8300000, guid: d64e91cef03af304fa237225b23c5707, type: 3}
 --- !u!1 &4876543854269981298
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +236,9 @@ MonoBehaviour:
   boostSpeed: 20
   uiController: {fileID: 0}
   eldritchBlastPrefab: {fileID: 5818389383454848320, guid: a5e4251ab16812b428116d01da3418e4, type: 3}
+  sword: {fileID: 223339814}
+  playerSounds:
+  - {fileID: 8300000, guid: 0bc66974c41ff8c4fa15f46d21ad3548, type: 3}
   eldritchBlast: {fileID: 0}
 --- !u!61 &4876543854269981195
 BoxCollider2D:

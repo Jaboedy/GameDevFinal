@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] float boostSpeed = 10f;
     [SerializeField] UIController uiController;
     [SerializeField] EldritchBlast eldritchBlastPrefab;
+    [SerializeField] SwordAudio sword;
+    [SerializeField] AudioClip[] playerSounds;
 
     //states
     bool isAlive = true; //remove serialize field when done testing
@@ -280,6 +282,20 @@ public class Player : MonoBehaviour
     public void SetPaused(bool pausedBool)
     {
         paused = pausedBool;
+    }
+
+    public void WalkSound()
+    {
+        if (playerSounds.Length > 0)
+        {
+            Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
+            AudioSource.PlayClipAtPoint(playerSounds[0], point + new Vector3(0.05f*transform.localScale.x, 0, 0), 0.2f);
+        }
+    }
+
+    public void AttackSound()
+    {
+        sword.SwingAudio();
     }
 
     public void DestroyPlayer()
