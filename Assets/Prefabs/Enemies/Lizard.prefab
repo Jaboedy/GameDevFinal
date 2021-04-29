@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1579858471543091309}
   - component: {fileID: 1579858471543091298}
   - component: {fileID: 1579858471543091299}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Lizard Attack
   m_TagString: Enemy
   m_Icon: {fileID: 0}

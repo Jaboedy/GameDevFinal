@@ -20,7 +20,7 @@ public class BrawlerAttackZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && player.GetAlive())
+        if (collision.CompareTag("Player") && player.GetAlive() && !brawler.GetMovingToWaypoint())
         {
             brawler.PoundAttack();
         }
