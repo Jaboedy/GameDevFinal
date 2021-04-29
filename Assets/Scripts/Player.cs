@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
 
+    SceneController sceneController;
+
     [SerializeField] EldritchBlast eldritchBlast;
 
     private void Awake()
@@ -302,5 +304,15 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(false);
         Destroy(gameObject);
+    }
+
+
+    public void GetSceneController()
+    {
+        sceneController = FindObjectOfType<SceneController>();
+    }
+    public void FinishDying()
+    {
+        sceneController.LoadDeathScene();
     }
 }
