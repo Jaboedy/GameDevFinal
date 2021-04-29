@@ -5,10 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class DeathSceneController : MonoBehaviour
 {
+    Player player;
+    UIController uiController;
+    AudioPlayer audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<Player>();
+        uiController = FindObjectOfType<UIController>();
+        if (player)
+        {
+            player.DestroyPlayer();
+        }
         
+        uiController.DestroyUIController();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        if (audioPlayer)
+        {
+            audioPlayer.DestroyAudioPlayer();
+        }
     }
 
     // Update is called once per frame
@@ -19,7 +34,7 @@ public class DeathSceneController : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     public void ExitGame()

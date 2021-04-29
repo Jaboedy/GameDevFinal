@@ -17,6 +17,7 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
+        player.GetSceneController();
         spawnID = player.GetSpawnID();
         var spawns = MapSpawns();
         SpawnPlayer(spawns);
@@ -53,5 +54,8 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
-    
+    public void LoadDeathScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

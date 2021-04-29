@@ -27,7 +27,7 @@ public class Bat : MonoBehaviour
     void Update()
     {
         hasCollided = false;
-        if (isAlive)
+        if (isAlive && player.GetAlive())
         {
             Fly();
             FlipSprite();

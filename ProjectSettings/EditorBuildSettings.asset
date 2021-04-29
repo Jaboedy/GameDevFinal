@@ -9,9 +9,36 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus and Stuff/Main Menu.unity
     guid: daed6eb49241e7847ac0ae344af1449d
   - enabled: 1
-    path: Assets/Scenes/Testing.unity
-    guid: 2c6709f7dce4a1a4caa6a18b70bfd360
+    path: Assets/Scenes/Menus and Stuff/Death Scene.unity
+    guid: 16d9c1cd6bf174f4bb64aa926ff33ee3
   - enabled: 1
-    path: Assets/Scenes/Testing2.unity
-    guid: 883f02ff2dd732948b08b2aa8a0baf16
+    path: Assets/Scenes/Menus and Stuff/Win Scene.unity
+    guid: f5cb3ec91fbd020478d6e35f137244be
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ZambieRoom.unity
+    guid: 9ef54d92f6af2b4498652a44506f33af
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Z to B.unity
+    guid: 6076fa434e4962a4cb2eb928b36b07af
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Z to L.unity
+    guid: f9c4ac7f282acd2428305f1b784612a7
+  - enabled: 1
+    path: Assets/Scenes/Rooms/BatRoom.unity
+    guid: 73387cabf0addc94f9ca57689e430778
+  - enabled: 1
+    path: Assets/Scenes/Rooms/LizardRoom.unity
+    guid: da7db83152940df45bda324577a5fd6f
+  - enabled: 1
+    path: Assets/Scenes/Rooms/B to L.unity
+    guid: cebf215024c43e644aefed969ad5dc3f
+  - enabled: 1
+    path: Assets/Scenes/Rooms/B to Boss.unity
+    guid: 5f538f701bf55ef42b6d37b7d91396c8
+  - enabled: 1
+    path: Assets/Scenes/Rooms/L to Boss.unity
+    guid: 55c12c314b6ea7a439b1ef64a172771c
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Boss Room.unity
+    guid: 9e88212741491b348b022f6aea4ac417
   m_configObjects: {}

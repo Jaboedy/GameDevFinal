@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     CapsuleCollider2D myBodyCollider;
     BoxCollider2D myFeetCollider;
 
+    SceneController sceneController;
+
     [SerializeField] EldritchBlast eldritchBlast;
 
     private void Awake()
@@ -302,5 +304,34 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(false);
         Destroy(gameObject);
+    }
+
+
+    public void GetSceneController()
+    {
+        sceneController = FindObjectOfType<SceneController>();
+    }
+    public void FinishDying()
+    {
+        StartCoroutine("Dying");
+    }
+
+    IEnumerator Dying()
+    {
+        Time.timeScale = 0.2f;
+        PlayDyingSound();
+        yield return new WaitForSecondsRealtime(5f);
+        Time.timeScale = 1f;
+        sceneController.LoadDeathScene();
+
+
+    }
+
+    public void PlayDyingSound()
+    {
+        if (playerSounds.Length > 1)
+        {
+            AudioSource.PlayClipAtPoint(playerSounds[1], Camera.current.transform.position, 0.2f);
+        }
     }
 }
