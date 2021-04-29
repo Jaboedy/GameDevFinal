@@ -72,7 +72,6 @@ public class Bat : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(startPos, direction, Mathf.Infinity, layers);
         if (hit.collider != null)
         {
-            Debug.DrawRay(startPos, direction);
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 myRigidbody.velocity = direction.normalized * flySpeed;
