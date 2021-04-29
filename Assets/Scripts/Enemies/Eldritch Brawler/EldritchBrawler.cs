@@ -18,7 +18,8 @@ public class EldritchBrawler : MonoBehaviour
     Animator brawlerAnimator;
     Rigidbody2D brawlerRigidbody;
 
-    GameObject currentWaypoint;
+    BossRoomController bossRoomController;
+
 
     bool isMovingToWaypoint = false;
     bool isAttacking = false;
@@ -33,6 +34,7 @@ public class EldritchBrawler : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player>();
+        bossRoomController = FindObjectOfType<BossRoomController>();
         brawlerAnimator = GetComponent<Animator>();
         brawlerRigidbody = GetComponent<Rigidbody2D>();
         StartCoroutine("WaypointCheck");
@@ -212,7 +214,7 @@ public class EldritchBrawler : MonoBehaviour
             TakeDamage(1, collision);
 
         }
-        if (collision.CompareTag("Eldritch Blast") && !hasCollided && collision.isTrigger)
+        if (collision.CompareTag("Eldritch Blast") && !hasTakenDamage && collision.isTrigger)
         {
             hasTakenDamage = true;
             StartCoroutine("InvulnerabilityFrames");
@@ -248,5 +250,10 @@ public class EldritchBrawler : MonoBehaviour
     {
         brawlerAnimator.SetBool("Hurting", false);
         canMove = true;
+    }
+
+    public void FinishDying()
+    {
+        bossRoomController.Win();
     }
 }

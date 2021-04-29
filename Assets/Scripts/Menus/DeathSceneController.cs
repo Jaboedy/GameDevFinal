@@ -16,7 +16,10 @@ public class DeathSceneController : MonoBehaviour
         player.DestroyPlayer();
         uiController.DestroyUIController();
         audioPlayer = FindObjectOfType<AudioPlayer>();
-        audioPlayer.DestroyAudioPlayer();
+        if (audioPlayer)
+        {
+            audioPlayer.DestroyAudioPlayer();
+        }
     }
 
     // Update is called once per frame

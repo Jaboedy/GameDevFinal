@@ -9586,11 +9586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 349083629519177404, guid: 254050843a99de64d9087eb09ac7b694, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.45837545
+      value: 0.21208906
       objectReference: {fileID: 0}
     - target: {fileID: 349083629519177404, guid: 254050843a99de64d9087eb09ac7b694, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1898236
+      value: 1.1836848
       objectReference: {fileID: 0}
     - target: {fileID: 349083630274164396, guid: 254050843a99de64d9087eb09ac7b694, type: 3}
       propertyPath: m_BoundingShape2D
@@ -15340,6 +15340,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4876543854269981195, guid: c43217ba95b8b9b468aacc24aba2623b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.0630839
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876543854269981195, guid: c43217ba95b8b9b468aacc24aba2623b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.40625
+      objectReference: {fileID: 0}
     - target: {fileID: 4876543854269981298, guid: c43217ba95b8b9b468aacc24aba2623b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -15392,6 +15400,14 @@ PrefabInstance:
       propertyPath: uiController
       value: 
       objectReference: {fileID: 493499585}
+    - target: {fileID: 4876543854269981303, guid: c43217ba95b8b9b468aacc24aba2623b, type: 3}
+      propertyPath: playerSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876543854269981303, guid: c43217ba95b8b9b468aacc24aba2623b, type: 3}
+      propertyPath: playerSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: c579c131fa77275439d7a794cf3a6d4d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43217ba95b8b9b468aacc24aba2623b, type: 3}
 --- !u!1001 &5688150186118202970
