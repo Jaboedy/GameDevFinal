@@ -13,7 +13,11 @@ public class DeathSceneController : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         uiController = FindObjectOfType<UIController>();
-        player.DestroyPlayer();
+        if (player)
+        {
+            player.DestroyPlayer();
+        }
+        
         uiController.DestroyUIController();
         audioPlayer = FindObjectOfType<AudioPlayer>();
         if (audioPlayer)
@@ -30,7 +34,7 @@ public class DeathSceneController : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     public void ExitGame()

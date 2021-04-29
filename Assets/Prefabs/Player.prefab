@@ -239,6 +239,7 @@ MonoBehaviour:
   sword: {fileID: 223339814}
   playerSounds:
   - {fileID: 8300000, guid: 0bc66974c41ff8c4fa15f46d21ad3548, type: 3}
+  - {fileID: 8300000, guid: c579c131fa77275439d7a794cf3a6d4d, type: 3}
   eldritchBlast: {fileID: 0}
 --- !u!61 &4876543854269981195
 BoxCollider2D:
