@@ -56,6 +56,6 @@ public class SceneController : MonoBehaviour
 
     public void LoadDeathScene()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(1);
     }
 }

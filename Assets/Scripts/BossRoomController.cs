@@ -40,6 +40,6 @@ public class BossRoomController : MonoBehaviour
         Time.timeScale = 0.2f;
         yield return new WaitForSeconds(1f);
         Time.timeScale = 1f;
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(2);
     }
 }
