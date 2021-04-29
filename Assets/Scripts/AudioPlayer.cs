@@ -18,6 +18,12 @@ public class AudioPlayer : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    public void DestroyAudioPlayer()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
