@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DeathSceneController : MonoBehaviour
+public class WinSceneController : MonoBehaviour
 {
     Player player;
     UIController uiController;
-    AudioPlayer audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,19 +14,17 @@ public class DeathSceneController : MonoBehaviour
         uiController = FindObjectOfType<UIController>();
         player.DestroyPlayer();
         uiController.DestroyUIController();
-        audioPlayer = FindObjectOfType<AudioPlayer>();
-        audioPlayer.DestroyAudioPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void NewGame()
+    public void MainMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void ExitGame()
